@@ -9,14 +9,15 @@ using namespace std;
 void vet_show(vector<int>& vet){
     cout << "[ ";
     for(size_t i = 0; i < vet.size(); i++)
-        cout << vet[i] << " ";
+        cout << vet.at(i) << " ";
     cout << "]\n";
 }
 
+//mostra o vetor espelhado
 void vet_rshow(vector<int>& vet){
     cout << "[ ";
-    for(size_t i = vet.size()-1; i >= 0 ; i--)
-        cout << vet[i] << " ";
+    for(vector<int>::iterator i = vet.end()-1; i >= vet.begin() ; --i)
+        cout << *i << " ";
     cout << "]\n";
 }
 
@@ -34,6 +35,35 @@ int vet_find(vector<int>& vet, int value){
 
 }
 
+void vet_rmind(vector<int>& vet, int value){
+    if(value < vet.size() && value >= 0){
+        vet.erase(vet.begin()+value);
+        return ;
+    }else{
+        return;
+    }
+}
+
+int vet_insert(vector<int>& vet, int pos, int value){
+    auto it = vet.begin();
+    it += pos;
+    if(it > vet.end()){
+        vet.push_back(value);
+        return 1;
+    }else{
+        vet.insert(it,value);
+    }return -1;
+}
+
+int vet_set(vector<int>& vet, int pos, int value){
+    auto it = vet.begin();
+    it += pos;
+    if(it < vet.end() && it>= vet.begin()){
+        *it = value;
+        return 1;
+    }
+    return -1;
+}
 int main(){
     vector<int> vet;
     string line;
@@ -43,7 +73,6 @@ int main(){
         cout << "$" << line << "\n";
         string cmd;
         ss >> cmd; //pegando o primeiro token
-
         if(line == "end"){
             break;
         }else if(cmd == "add"){
@@ -65,10 +94,28 @@ int main(){
                     cout << -1 << " ";
                 }
             }
-            cout << "]";
+            cout << "]\n";
         }else if(cmd == "rmi"){
+            int value;
+            while(ss >> value){
+                vet_rmind(vet,value);
+            }
         }else if(cmd == "ins"){
+            int value, pos;
+            ss >> pos >> value;
+            vet_insert(vet,pos,value);
+
         }else if(cmd == "rma"){
+            vet.clear();
+        }else if(cmd == "get"){
+            int pos;
+            ss >> pos;
+            cout << vet.at(pos) << "\n";
+        }else if(cmd == "set"){
+            int value, pos;
+            ss >> pos >> value;
+            vet_set(vet,pos,value);
+
         }else{
             cout << "Comando invalido\n";
         }
