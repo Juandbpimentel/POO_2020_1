@@ -7,4 +7,4 @@
 ## SO2A01 - ![Carro](Atividades/Carro)
 -Nesse trabalho foi criada a classe Carro, com seus atributos e métodos
 
-## S03A02 - ![Mestre dos Vetores](Atividades/Mestre\Dos\Vetores/)
+## S03A02 - ![Mestre dos Vetores](Atividades/Mestre_Dos_Vetores)
