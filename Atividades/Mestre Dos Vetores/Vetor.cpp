@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
-#include<bits/stdc++.h> 
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -25,13 +25,13 @@ void vet_rshow(vector<int>& vet){
 int vet_find(vector<int>& vet, int value){
     vector<int> :: iterator it;
 
-    it = find (vet.begin(), vet.end(), value); 
-    if (it != vet.end()) 
-    { 
-        return it - vet.begin(); 
-    } 
+    it = find (vet.begin(), vet.end(), value);
+    if (it != vet.end())
+    {
+        return it - vet.begin();
+    }
     else
-        return -1; 
+        return -1;
 
 }
 
@@ -89,7 +89,7 @@ int main(){
             while(ss >> value){
                 int v = vet_find(vet,value);
                 if(v != -1){
-                    cout << v << " "; 
+                    cout << v << " ";
                 }else{
                     cout << -1 << " ";
                 }
@@ -116,6 +116,18 @@ int main(){
             ss >> pos >> value;
             vet_set(vet,pos,value);
 
+        }else if(cmd == "help"){
+            cout << "comandos:\n"
+                 << "  add\n"
+                 << "  show\n"
+                 << "  rshow\n"
+                 << "  find\n"
+                 << "  rmi\n"
+                 << "  ins\n"
+                 << "  rma\n"
+                 << "  get\n"
+                 << "  set\n"
+                 << "  end\n";
         }else{
             cout << "Comando invalido\n";
         }
