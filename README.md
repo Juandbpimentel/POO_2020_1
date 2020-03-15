@@ -10,3 +10,5 @@
 ## S03A01 - [Motoca Tunada](Atividades/Motoca)
 
 ## S03A02 - [Mestre dos Vetores](Atividades/Mestre_Dos_Vetores)
+
+## S03A03 - [Tamagotchi](Atividades/Tamagotchi)
