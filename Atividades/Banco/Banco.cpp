@@ -2,6 +2,9 @@
 #include <sstream>
 #include <vector>
 #include <iomanip>
+#include <cstdlib>
+#include <ctime>
+
 using namespace std;
 class Operacao{
 private:
@@ -23,7 +26,8 @@ private:
     vector<Operacao> Estrato;
 public: 
     Conta(int nextId, float saldo):nextId(nextId),saldo(saldo){
-        //this numero = aleatório;
+        srand((unsigned)time(0));
+        this->numero = rand();
     };
     bool salvarOperacao(string label, float value, float saldo){
 
