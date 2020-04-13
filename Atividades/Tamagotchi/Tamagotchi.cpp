@@ -192,7 +192,7 @@ public:
         if(this->getStatus_Energia() == true)
             this->setLimpeza(getMaxLimpeza());
         if(this->getStatus_Energia() == true){
-            this->idade += 2;
+            this->idade += 1;
             cout << " (Esfrega) *Shish Shish*  " << endl;
             cout << " (Molha) *Shhhhhh*  " << endl;
             cout << " (Cheirinho bom)" << endl;
