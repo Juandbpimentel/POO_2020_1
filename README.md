@@ -9,6 +9,6 @@
 
 ## S03A01 - [Motoca Tunada](Atividades/Motoca/Motoca.cpp)
 
-## S03A02 - [Mestre dos Vetores](Atividades/Mestre_Dos_Vetores)
+## S03A02 - [Mestre dos Vetores](Atividades/Mestre_Dos_Vetores/Vetor.cpp)
 
-## S03A03 - [Tamagotchi](Atividades/Tamagotchi)
+## S03A03 - [Tamagotchi](Atividades/Tamagotchi/Tamagotchi.cpp)
