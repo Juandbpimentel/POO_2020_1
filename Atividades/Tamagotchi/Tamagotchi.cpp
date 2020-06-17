@@ -49,8 +49,8 @@ private:
 
             return;
         }
-        else if (value > this->maxFome){
-            this->limpeza = maxFome;
+        else if (value > this->maxLimpeza){
+            this->limpeza = maxLimpeza;
         }
         else{
             this->limpeza = value;
@@ -67,7 +67,7 @@ private:
 
 public:
     Tamagotchi(int energia = 0, int fome = 0, int limpeza = 0):
-        maxEnergia(energia),maxLimpeza(fome),maxFome(limpeza),
+        maxEnergia(energia),maxLimpeza(limpeza),maxFome(fome),
         energia(energia),fome(fome),limpeza(limpeza){
         this->idade = 0;
         this->diamantes = 0;
@@ -253,8 +253,7 @@ public:
 };
 
 struct Menu
-{
-
+{   
     Tamagotchi bichinho = Tamagotchi(20,20,20);
 
     void opcoes(string line){
