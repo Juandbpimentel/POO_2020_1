@@ -13,10 +13,11 @@ private:
     int diamantes;
     int idade;
     bool statusEnergia;
+    bool msgMorte;
 
     void setEnergia(int value){
         if(value <= 0){
-            cout << "Seu bichinho morreu de cansaço, seu corpinho não aguentou tanto esforço e tão pouco descanso ;-;\n";
+            this->energia = value;
             this->statusEnergia = false;
             return;
         }
@@ -29,7 +30,7 @@ private:
     }
     void setFome(int value){
         if(value <= 0){
-            cout << "Seu bichinho morreu desnutrido, você é um monstro X___X \n";
+            this->fome = value;
             this->statusEnergia = false;
             return;
         }
@@ -43,8 +44,9 @@ private:
 
     void setLimpeza(int value){
         if(value <= 0){
-            cout << "Seu bichinho estava tão sujo, mas tão sujo que ele pegou uma infecção e morreu, era só ter dado um banho no coitado ;-;\n";
+            this->limpeza = value;
             this->statusEnergia = false;
+
             return;
         }
         else if (value > this->maxFome){
@@ -55,6 +57,14 @@ private:
         }
     }
 
+    void setMsgMorte(int op){
+        if(op == 1)
+            this->msgMorte = true;
+        else{
+            this->msgMorte = false;
+        }
+    }
+
 public:
     Tamagotchi(int energia = 0, int fome = 0, int limpeza = 0):
         maxEnergia(energia),maxLimpeza(fome),maxFome(limpeza),
@@ -62,6 +72,7 @@ public:
         this->idade = 0;
         this->diamantes = 0;
         this->statusEnergia = true;
+        this->msgMorte = false;
     }
 
     ~Tamagotchi(){
@@ -69,27 +80,36 @@ public:
     }
 
     void mensagemMorte(){
-        if(this->getEnergia() < 1){
+        if(getMsgMorte() == true){
+            cout<< endl << "Utilize a função reset para reiniciar seu Tamagotchi, para melhor entendimento utilize a função help" << endl;
+        }else if(this->getEnergia() < 1){
             cout<< "Seu bichinho morreu de cansaço, visite a lápide dele para lembrar de sua, extremamente longa, vida de " << this->getIdade() <<" ações e prestar seu respeito\n\n\n"
             << "              _________________________________  \n"
             << "             |             R.I.P               | \n"
             << "             |            Bichinho             | \n"
             << "             |  O melhor amigo do programador  | \n"
             << "             |_________________________________| \n";
-        } else if(this->getFome() < 1){
+            cout<< endl << endl << endl << "Utilize a função reset para reiniciar seu Tamagotchi, para melhor entendimento utilize a função help" << endl << endl;
+            setMsgMorte(1);
+            
+        }else if(this->getFome() < 1){
             cout<< "Seu bichinho morreu de Desnutrição, visite a lápide dele para lembrar de sua, extremamente longa, vida de " << this->getIdade() <<" ações e prestar seu respeito\n\n\n"
             << "              _________________________________  \n"
             << "             |             R.I.P               | \n"
             << "             |            Bichinho             | \n"
             << "             |  O melhor amigo do programador  | \n"
             << "             |_________________________________| \n";
-        } else if(this->getLimpeza() < 1){
+            cout<< endl << endl << endl << "Utilize a função reset para reiniciar seu Tamagotchi, para melhor entendimento utilize a função help" << endl << endl;
+            setMsgMorte(1);
+        }else if(this->getLimpeza() < 1){
             cout<< "Seu bichinho morreu por causa de uma infecção pelas bactérias da sujeira dele, visite a lápide dele para lembrar de sua, extremamente longa, vida de " << this->getIdade() <<" ações e prestar seu respeito\n\n\n"
             << "              _________________________________  \n"
             << "             |             R.I.P               | \n"
             << "             |            Bichinho             | \n"
             << "             |  O melhor amigo do programador  | \n"
             << "             |_________________________________| \n";
+            cout<< endl << endl << endl << "Utilize a função reset para reiniciar seu Tamagotchi, para melhor entendimento utilize a função help" << endl << endl;
+            setMsgMorte(1);
         }
     }
 
@@ -130,6 +150,10 @@ public:
     bool getStatus_Energia(){
         return this->statusEnergia;
     }
+
+    bool getMsgMorte(){
+        return this->msgMorte;
+    }
 // Ações do pet
     void alimentar(){
         if(this->getStatus_Energia() == true)
@@ -141,44 +165,35 @@ public:
         if(this->getStatus_Energia() == true){
             this->idade += 1;
             cout << "Nhoc";
-            if(this->idade > 1)
-            {
-                for (size_t i = 1; i < this->idade; i++)
-                {
+            if(this->idade > 1){
+                for (size_t i = 1; i < this->idade; i++){
                    cout << " nhoc";
                 }
             }
             cout << endl << endl;
-        }else
-        {
+        }else{
             this->mensagemMorte();
         }
     }
 
     void dormir(){
-            if(this->getStatus_Energia() == true)
-            if(getEnergia() >= 5){
-                this->setEnergia(getMaxEnergia());
-            if(this->getStatus_Energia() == true)
-                this->setFome(getFome());
-            if(this->getStatus_Energia() == true)
-                this->setLimpeza(getLimpeza());
+        if(this->getStatus_Energia() == true)
+        if(getEnergia() >= 5)
+            this->setEnergia(getMaxEnergia());
+        if(this->getStatus_Energia() == true)
+            this->setFome(getFome());
+        if(this->getStatus_Energia() == true)
+            this->setLimpeza(getLimpeza());
         if(this->getStatus_Energia() == true){
-                this->idade += 1;
-                cout << "ZzZz";
-                if(this->idade > 1)
-                {
-                    for (size_t i = 1; i < this->idade; i++)
-                    {
+            this->idade += 1;
+            cout << "ZzZz";
+            if(this->idade > 1){
+                for (size_t i = 1; i < this->idade; i++){
                     cout << " ZzZz";
-                    }
                 }
-                cout << endl << endl;
             }
-            else
-                cout << "Seu bichinho dormiu demais cara! Se ele dormir mais vai ficar em coma x-x\n";
-        }else
-        {
+            cout << endl << endl;
+        }else{
             this->mensagemMorte();
         }
 
@@ -205,11 +220,11 @@ public:
 
     void brincar(){
         if(this->getStatus_Energia() == true)
-            this->setEnergia(getMaxEnergia() - 2);
+            this->setEnergia(getEnergia() - 2);
         if(this->getStatus_Energia() == true)
             this->setFome(getFome() - 1);
         if(this->getStatus_Energia() == true)
-            this->setLimpeza(getMaxLimpeza() - 3);
+            this->setLimpeza(getLimpeza() - 3);
         if(this->getStatus_Energia() == true){
             this->idade += 1;
             this->diamantes += 1;
@@ -259,8 +274,9 @@ struct Menu
                  << "show" << endl
                  << "shower" << endl
                  << "sleep" << endl
-                 << "reiniciar < Integer Vida > < Integer Fome > < Integer Limpeza >" << endl
-                 << "reset < Integer Vida > < Integer Fome > < Integer Limpeza >" << endl;
+                 << "reiniciar [ Integer Vida ] [ Integer Fome ] [ Integer Limpeza ]" << endl
+                 << "reset [ Integer Vida ] [ Integer Fome ] [ Integer Limpeza ]" << endl;
+
         }else if (op == "reiniciar" || op == "reset"){
             int energia = 0, fome = 0, limpeza = 0;
             in >> energia >> fome >> limpeza;
