@@ -148,7 +148,7 @@ public:
                    cout << " nhoc";
                 }
             }
-            cout << endl;
+            cout << endl << endl;
         }else
         {
             this->mensagemMorte();
@@ -173,7 +173,7 @@ public:
                     cout << " ZzZz";
                     }
                 }
-                cout << endl;
+                cout << endl << endl;
             }
             else
                 cout << "Seu bichinho dormiu demais cara! Se ele dormir mais vai ficar em coma x-x\n";
@@ -219,7 +219,7 @@ public:
                     cout << " ihuu";
                 }
             }
-            cout << endl;
+            cout << endl << endl;
         }else
         {
             this->mensagemMorte();
