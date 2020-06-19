@@ -2,6 +2,8 @@
 #include <sstream>
 #include <vector>
 #include <iomanip>
+#include <stdlib.h>
+#include <locale.h>
 
 using namespace std;
 
@@ -51,8 +53,7 @@ private:
         }
         else if (value > this->maxLimpeza){
             this->limpeza = maxLimpeza;
-        }
-        else{
+        } else{
             this->limpeza = value;
         }
     }
@@ -81,9 +82,9 @@ public:
 
     void mensagemMorte(){
         if(getMsgMorte() == true){
-            cout<< endl << "Utilize a função reset para reiniciar seu Tamagotchi, para melhor entendimento utilize a função help" << endl;
+            cout<< endl << "Utilize a função reiniciar para reviver seu Tamagotchi, para melhor entendimento utilize a função help" << endl;
         }else if(this->getEnergia() < 1){
-            cout<< "Seu bichinho morreu de cansaço, visite a lápide dele para lembrar de sua, extremamente longa, vida de " << this->getIdade() <<" ações e prestar seu respeito\n\n\n"
+            cout<< endl << "Seu bichinho morreu de cansaço, visite a lápide dele para lembrar de sua, extremamente longa, vida de " << this->getIdade() <<" ações e prestar seu respeito\n\n\n"
             << "              _________________________________  \n"
             << "             |             R.I.P               | \n"
             << "             |            Bichinho             | \n"
@@ -93,7 +94,7 @@ public:
             setMsgMorte(1);
             
         }else if(this->getFome() < 1){
-            cout<< "Seu bichinho morreu de Desnutrição, visite a lápide dele para lembrar de sua, extremamente longa, vida de " << this->getIdade() <<" ações e prestar seu respeito\n\n\n"
+            cout<< endl << "Seu bichinho morreu de Desnutrição, visite a lápide dele para lembrar de sua, extremamente longa, vida de " << this->getIdade() <<" ações e prestar seu respeito\n\n\n"
             << "              _________________________________  \n"
             << "             |             R.I.P               | \n"
             << "             |            Bichinho             | \n"
@@ -102,7 +103,7 @@ public:
             cout<< endl << endl << endl << "Utilize a função reset para reiniciar seu Tamagotchi, para melhor entendimento utilize a função help" << endl << endl;
             setMsgMorte(1);
         }else if(this->getLimpeza() < 1){
-            cout<< "Seu bichinho morreu por causa de uma infecção pelas bactérias da sujeira dele, visite a lápide dele para lembrar de sua, extremamente longa, vida de " << this->getIdade() <<" ações e prestar seu respeito\n\n\n"
+            cout<< endl << "Seu bichinho morreu por causa de uma infecção pelas bactérias da sujeira dele, visite a lápide dele para lembrar de sua, extremamente longa, vida de " << this->getIdade() <<" ações e prestar seu respeito\n\n\n"
             << "              _________________________________  \n"
             << "             |             R.I.P               | \n"
             << "             |            Bichinho             | \n"
@@ -155,7 +156,7 @@ public:
         return this->msgMorte;
     }
 // Ações do pet
-    void alimentar(){
+    void comer(){
         if(this->getStatus_Energia() == true)
             this->setEnergia(getEnergia() - 1);
         if(this->getStatus_Energia() == true)
@@ -208,11 +209,18 @@ public:
             this->setLimpeza(getMaxLimpeza());
         if(this->getStatus_Energia() == true){
             this->idade += 1;
-            cout << " (Esfrega) *Shish Shish*  " << endl;
+            cout << " (Esfrega) ";
+            if(this->idade > 1){
+                for (size_t i = 0; i < this->idade; i++){
+                    cout << "*Shish* ";
+                }
+            }else{
+                cout << "*Shish* ";
+            }
+            cout << endl;
             cout << " (Molha) *Shhhhhh*  " << endl;
             cout << " (Cheirinho bom)" << endl;
-        }else
-        {
+        }else{
             this->mensagemMorte();
         }
 
@@ -235,48 +243,70 @@ public:
                 }
             }
             cout << endl << endl;
-        }else
-        {
+        }else{
             this->mensagemMorte();
         }
 
     }
 
-    string mostrar(){
+    string stringstreambichinho(){
         stringstream ss;
-        ss << "| E:" <<  energia  << "/"     << maxEnergia <<
-             " | F:" <<    fome   << "/"     << maxFome    <<
-             " | L:" <<  limpeza  << "/"     << maxLimpeza <<
-             " | D:" << diamantes << " | I:" << idade << " |";
+        ss << "| Energia:" <<  energia  << "/"     << maxEnergia <<
+             " | Fome:" <<    fome   << "/"     << maxFome    <<
+             " | Limpeza:" <<  limpeza  << "/"     << maxLimpeza <<
+             " | Diamantes:" << diamantes << " | Idade:" << idade << " |";
         return ss.str();
     }
+
+    void mostrar(){
+
+        cout << endl;
+        for(int i = stringstreambichinho().size(); i>0; i--)
+            cout << '-';
+        cout << endl << stringstreambichinho() << endl;
+        for(int i = stringstreambichinho().size(); i>0; i--)
+            cout << '-';
+        cout << endl;
+
+        cout << "Digite uma opção para seu bichinho fazer:"<< endl
+             << "1) Brincar"   << endl
+             << "2) Comer" << endl
+             << "3) Dormir"    << endl
+             << "4) Banhar" << endl
+             << "(Se quiser sair do jogo digite end, help se quiser ler sobre os comandos e reiniciar em caso de falecimento do seu bichinho)"<< endl << endl
+             << ">>>>>>>>>> ";
+    }
+
+
 };
 
 struct Menu
 {   
     Tamagotchi bichinho = Tamagotchi(20,20,20);
 
-    void opcoes(string line){
+    void opcoes(string line){ 
         stringstream in(line);
         string op;
         in >> op;
         if( op == "help"){
-            cout << "alimentar" << endl
-                 << "banhar" << endl
-                 << "brincar" << endl
-                 << "clean" << endl
-                 << "dormir" << endl
-                 << "eat" << endl
-                 << "help" << endl
-                 << "mostrar" << endl
-                 << "play" << endl
-                 << "show" << endl
-                 << "shower" << endl
-                 << "sleep" << endl
-                 << "reiniciar [ Integer Vida ] [ Integer Fome ] [ Integer Limpeza ]" << endl
-                 << "reset [ Integer Vida ] [ Integer Fome ] [ Integer Limpeza ]" << endl;
+            system("cls||clear");
+            cout << endl << "------------------------------------------------------------------------------------------------------------------------------" << endl
+                         << "|                                                          Comandos                                                          |" << endl
+                         << "------------------------------------------------------------------------------------------------------------------------------" << endl
+                         << "|  Comer  | Enche a Fome do seu bichinho                                                                                     |" << endl
+                         << "------------------------------------------------------------------------------------------------------------------------------" << endl
+                         << "| Banhar  | Enche a limpeza do seu bichinho                                                                                  |" << endl
+                         << "------------------------------------------------------------------------------------------------------------------------------" << endl
+                         << "| Brincar | Dá diamantes pro seu bichinho aumentando a pontuação                                                          |" << endl
+                         << "------------------------------------------------------------------------------------------------------------------------------" << endl
+                         << "| Dormir  | Enche a energia do seu bichinho                                                                                  |" << endl
+                         << "------------------------------------------------------------------------------------------------------------------------------" << endl
+                         << "|Reiniciar| digite reiniciar para reviver seu bichinho com 20 pontos de cada categoria, opcionalmente voce pode digitar      |" << endl
+                         << "|         | a vida, a fome e a limpeza máxima do seu bichinho na frente do comando - Exemplo: Reiniciar 50 50 50            |" << endl
+                         << "------------------------------------------------------------------------------------------------------------------------------" << endl;
 
-        }else if (op == "reiniciar" || op == "reset"){
+        }else if (op == "Reiniciar" || op == "reiniciar"){
+            system("cls||clear");
             int energia = 0, fome = 0, limpeza = 0;
             in >> energia >> fome >> limpeza;
             if( energia <= 0)
@@ -287,22 +317,26 @@ struct Menu
                 limpeza = 20;
 
             bichinho = Tamagotchi(energia, fome, limpeza);
-            cout << "Seu bichinho está sendo revivido!"<< endl;
-        }
-        else if (op == "mostrar" || op == "show"){
-            cout << bichinho.mostrar() << endl;
-        }
-        else if (op == "brincar" || op == "play"){
+            cout << endl << "Seu bichinho foi revivido :3!"<< endl;
+
+        }else if (op == "1" || op == "Brincar"|| op == "brincar" ){//brincar
+            system("cls||clear");
             bichinho.brincar();
-        }else if (op == "alimentar" || op == "eat"){
-            bichinho.alimentar();
-        }
-        else if (op == "dormir" || op == "sleep"){
+
+        }else if (op == "2" || op == "Comer"|| op == "comer" ){//comer
+            system("cls||clear");
+            bichinho.comer();
+
+        }else if (op == "3" || op == "Dormir"|| op == "dormir" ){//dormir
+            system("cls||clear");
             bichinho.dormir();
-        }
-        else if (op == "banhar" || op == "shower" || op == "clean"){
+
+        }else if (op == "4" || op == "Banhar"|| op == "banhar" ){//banhar
+            system("cls||clear");
             bichinho.banhar();
+
         }else{
+            system("cls||clear");
             cout << "operação inválida" << endl;
         }
     }
@@ -310,8 +344,9 @@ struct Menu
     void terminal(){
         string line;
         while(true){
+            bichinho.mostrar();
             getline(cin, line);
-            cout << "$" << line << endl;
+            cout << endl;
             if(line == "end"){
                 cout << "end...";
                 return;
@@ -322,6 +357,7 @@ struct Menu
 };
 
 int main(){
+    setlocale(LC_ALL,"pt");
     Menu menu;
     menu.terminal();
     return 0;
