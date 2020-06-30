@@ -291,6 +291,16 @@ class Tamagotchi{
 
 };
 
+void vet_rmind(vector<Tamagotchi>& vet, int value){
+    if(value < vet.size() && value >= 0){
+        cout << "O bichinho " << vet.at(value).getNome() << " foi removido com sucesso" << endl;
+        vet.erase(vet.begin()+value);
+        return;
+    }else{
+        return;
+    }
+}
+
 struct Menu
 {   
     private:
@@ -388,31 +398,51 @@ struct Menu
         string line;
 
         while(true){
-            int bichoEscolhido = 0;
+            int bichoEscolhido = -4;
             if(bichinho.size() == 0){
                 system("cls||clear");
                 criar_bichinho(bichinho);
+                system("cls||clear");
             }
-            cout <<"Escolha um dos bichinhos, digite seu número para selecionar, ou digite -1 para criar um novo e -2 pra fechar o jogo"<< endl;
-            
-            cout << "-2" << ") "<< "Sair" << endl;
-            cout << "-1" << ") "<< "Criar Novo Bicho" << endl;
+
+            cout << "Escolha um bicho ou uma opção" << endl;            
             for(int i = 0; i < bichinho.size(); i++){
                 cout << " " << i << ") "<< bichinho.at(i).getNome()<< endl; 
             }
+            cout << "-1" << ") "<< "Criar Novo Bichinho" << endl;
+            cout << "-2" << ") "<< "Remover Bichinho" << endl;
+            cout << "-3" << ") "<< "Sair" << endl;
             cout << endl << ">>>>>>>>>> ";
             getline(cin,line);
             stringstream in(line);
             in >> bichoEscolhido;
-            system("cls||clear");
             
-            if(bichoEscolhido == -2){
+            if(bichoEscolhido == -3){
                 system("cls||clear");
-                cout << "Saindo"<< endl;
+                cout << "Saindo..."<< endl;
                 return;
+            }else if(bichoEscolhido == -2){
+                system("cls||clear");
+                int bichoRemover;
+                string escolha;
+
+                cout << "Escolha um dos bichinhos para remover" << endl;
+                for(int i = 0; i < bichinho.size(); i++){
+                    cout << " " << i << ") "<< bichinho.at(i).getNome()<< endl; 
+                }
+
+                getline(cin,escolha);
+                stringstream aux(escolha);
+
+                in >> bichoRemover;
+                system("cls||clear");
+                vet_rmind(bichinho,bichoRemover);
+
             }else if(bichoEscolhido == -1){
+                system("cls||clear");
                 criar_bichinho(bichinho);
-            }else{
+                system("cls||clear");
+            }else if(bichoEscolhido > -1 && bichinho.size() > bichoEscolhido){
                 system("cls||clear");
                 while(true){
                     bichinho.at(bichoEscolhido).mostrar();
@@ -420,11 +450,13 @@ struct Menu
                     cout << endl;
                     if(line == "sair"){
                         system("cls||clear");
-                        cout << "saindo...";
                         break;
                     }
                     opcoes_bicho(bichoEscolhido,line);
                 }
+            }else{
+                system("cls||clear");
+                cout << "Opção inválida" << endl;
             }
 
         }
