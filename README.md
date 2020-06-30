@@ -11,3 +11,5 @@
 ## S03A02 - [Mestre dos Vetores](Atividades/Mestre_Dos_Vetores/Vetor.cpp)
 
 ## S03A03 - [Tamagotchi](Atividades/Tamagotchi/Tamagotchi.cpp)
+
+## S03A03 extra - [Vetor de Tamagotchi](Atividades/Vetor_de_Tamagotchi/Tamagotchi.cpp)
