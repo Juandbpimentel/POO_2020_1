@@ -301,13 +301,12 @@ void vet_rmind(vector<Tamagotchi>& vet, int value){
     }
 }
 
-struct Menu
-{   
+struct Menu{   
     private:
     vector<Tamagotchi> bichinho;
 
     void criar_bichinho(vector<Tamagotchi>& Vetor){
-        string nome = "Bichinho", nome2 = "Bichinho";
+        string nome = "Bichinho";
         int energia = 0, fome = 0, limpeza = 0;
         
         string line; 
@@ -434,7 +433,7 @@ struct Menu
                 getline(cin,escolha);
                 stringstream aux(escolha);
 
-                in >> bichoRemover;
+                aux >> bichoRemover;
                 system("cls||clear");
                 vet_rmind(bichinho,bichoRemover);
 
