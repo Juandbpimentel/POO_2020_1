@@ -14,4 +14,4 @@
 
 ## S03A03 extra - [Vetor de Tamagotchi](Atividades/Vetor_de_Tamagotchi/Tamagotchi.cpp)
 
-## S04A01 - [Pula_Pula](Atividades\Pula_Pula\Pula_Pula.cpp)
+## S04A01 - [Pula_Pula](Atividades/Pula_Pula/Pula_Pula.cpp)
