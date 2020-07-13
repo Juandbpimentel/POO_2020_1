@@ -1,7 +1,7 @@
 #include <vector>
 #include <sstream>
-#include <iomanip>
 #include <iostream>
+#include <iomanip>
 #include <stdlib.h>
 #include <locale>
 
@@ -408,6 +408,7 @@ struct Menu{
             for(int i = 0; i < bichinho.size(); i++){
                 cout << " " << i << ") "<< bichinho.at(i).getNome()<< endl; 
             }
+            
             cout << "-1" << ") "<< "Criar Novo Bichinho" << endl;
             cout << "-2" << ") "<< "Remover Bichinho" << endl;
             cout << "-3" << ") "<< "Sair" << endl;

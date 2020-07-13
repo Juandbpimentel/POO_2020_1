@@ -26,8 +26,7 @@ int vet_find(vector<int>& vet, int value){
     vector<int> :: iterator it;
 
     it = find (vet.begin(), vet.end(), value);
-    if (it != vet.end())
-    {
+    if (it != vet.end()){
         return it - vet.begin();
     }
     else
@@ -64,6 +63,7 @@ int vet_set(vector<int>& vet, int pos, int value){
     }
     return -1;
 }
+
 int main(){
     vector<int> vet;
     string line;
