@@ -161,9 +161,9 @@ class Trampoline{
 
         void fecharPulaPula(){
             while(kidsWaiting.size()>0){
-                    this->receberDinheiro(kidsWaiting.at(0).pedirProPaiPagar());
-                    this->kidsWaiting.erase(this->kidsWaiting.begin());
-                }
+                this->receberDinheiro(kidsWaiting.at(0).pedirProPaiPagar());
+                this->kidsWaiting.erase(this->kidsWaiting.begin());
+            }
             while(kidsPlaying.size()>0){
                 this->receberDinheiro(kidsPlaying.at(0).pedirProPaiPagar());
                 this->kidsPlaying.erase(this->kidsPlaying.begin());
@@ -244,7 +244,7 @@ class Trampoline{
                 if(valor == -1)
                     cout << "Essa criança não está no brinquedo" << endl;
                 else
-                cout << "O saldo do "<< nome << " é de: " << valor << " R$" << endl;
+                    cout << "O saldo do "<< nome << " é de: " << valor << " R$" << endl;
 
             }else if(op == "init"){
                 int espaco;
@@ -264,15 +264,15 @@ class Trampoline{
 
         void terminal(){
             string line;
-                while(true){
-                    getline(cin,line);
-                    cout << endl;
-                    if(line == "end"){
-                        system("cls||clear");
-                        break;
-                    }
-                    opcoes(line);
+            while(true){
+                getline(cin,line);
+                cout << endl;
+                if(line == "end"){
+                    system("cls||clear");
+                    break;
                 }
+                opcoes(line);
+            }
         }
 
         Trampoline(int lucro, int espaco_trampolim):
@@ -281,7 +281,7 @@ class Trampoline{
 };
 
 int main(){
-    Trampoline teste(0,5);
-    teste.terminal();
+    Trampoline exec(0,5);
+    exec.terminal();
     cout << "saindo" << endl;
 }
