@@ -4,14 +4,14 @@
 
 # POO 2020.1 - Juan David Bizerra Pimentel | 470157
 
-## 01 - [Carro](Atividades/Carro/Carro.cpp)
+## 01 - [Carro](Atividades/Carro)
 
-## 02 - [Motoca Tunada](Atividades/Motoca/Motoca.cpp)
+## 02 - [Motoca Tunada](Atividades/Motoca)
 
-## 03 - [Mestre dos Vetores](Atividades/Mestre_Dos_Vetores/Vetor.cpp)
+## 03 - [Mestre dos Vetores](Atividades/Mestre_Dos_Vetores)
 
-## 04 - [Tamagotchi](Atividades/Tamagotchi/Tamagotchi.cpp)
+## 04 - [Tamagotchi](Atividades/Tamagotchi)
 
-## 05 extra - [Vetor de Tamagotchi](Atividades/Vetor_de_Tamagotchi/Tamagotchi.cpp)
+## 05 extra - [Vetor de Tamagotchi](Atividades/Vetor_de_Tamagotchi)
 
-## 06 - [Pula_Pula](Atividades/Pula_Pula/Pula_Pula.cpp)
+## 06 - [Pula_Pula](Atividades/Pula_Pula)
