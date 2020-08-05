@@ -16,4 +16,4 @@
 
 ## 06 - [Pula_Pula](Atividades/Pula_Pula)
 
-## 07 - [Junk Food Machine](Atividades/Junk-food-machine/Junk_food_machine.cpp)
+## 07 - [Junk Food Machine](Atividades/Junk-food-machine)
