@@ -1,49 +1,143 @@
 #include <iostream>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
-class Fone{
+class Numero{
 public:
-    int index;
     string id;
     string number;
+    int index;
 
-    Fone(int index,string id = "",string number = ""):
+    Numero(int index = 0, string id = "",string number = ""):
     index(index),id(id),number(number){}
 
-    Fone(){
-        this->index = 0;
-        this->id = "";
-        this->number = "";
-    }
-
     static bool validar(string number){
-        string valid = "0123456789()-.";
+        string valid = "0123456789()-. ";
         for(char c : number)
             if(valid.find(c) == string::npos)
                 return false;
         return true;
-    }  
+    }
+
+    int getIndex(){
+        return index;
+    }
 };
 
-ostream& operator<<(ostream& ost, const Fone& fone){
-    ost << "[" << fone.index << " | " << fone.id << " | " << fone.number << "]";
+ostream& operator<<(ostream& ost, const Numero& numero){
+    ost << "[" << numero.index << " | " << numero.id << " | " << numero.number << "]";
     return ost;
 }
 
-int main(){
-    Fone fone;
-    string number = "4002-8922";
-    fone = (Fone::validar(number)) ?  Fone(1,"Bom Dia & Cia",number) : Fone(1,"erro","erro");
 
-    cout << fone << endl;
 
-    int a[10] = {0,1,2,3,4,5,6,7,8,9};
 
-    for (int i = 0; i < 10 ; i++)
-    {
-        cout << a[i] << endl;
+class Contato{
+private:
+    string nome;
+    vector<Numero*> numeros;
+public:
+    Contato(string nome = "", vector<Numero*> numeros = vector<Numero*>()):
+    nome(nome),numeros(numeros){
     }
-    
+
+    bool addNumero(Numero* numero){
+        if(numero == nullptr || !(Numero::validar(numero->number)) ){
+            return false;
+        }else{
+            numero->index = numeros.size();
+            numeros.push_back(numero);
+            return true;
+        }
+    }
+
+    bool rmNumero(int index){
+        if(index >= (int) numeros.size() || index < 0 ){
+            return false;
+        }else{
+            numeros.erase(numeros.begin() + index);
+            for (int i = 0; i < numeros.size(); i++){
+                numeros[i]->index = i;
+            }
+            return true;
+        }
+    }
+
+    vector<Numero*> getNumeros(){
+        return numeros;
+    }
+
+    string getNome(){
+        return this->nome;
+    }
+
+    friend ostream& operator<<(ostream& ost, Contato& contato);
+};
+
+ostream& operator<<(ostream& ost, Contato& contato){
+    ost << "- " << contato.nome << " ";
+
+    if(contato.numeros.size()>0){
+        for (int i = 0; i < contato.numeros.size(); i++){
+            if(contato.numeros[i]!= nullptr){
+                ost << "[" << contato.numeros[i]->index << "|" << contato.numeros[i]->id << "|" << contato.numeros[i]->number <<"]";
+            }else{
+                ost << "";
+            }
+        }
+        return ost;
+    }else
+        return ost;
+}
+
+template<class T>
+T getss(stringstream& in){
+    T t;
+    in >> t;
+    return t;
+}
+
+int main(){
+    Contato contatomain = Contato("Pessoa");
+    string line, cmd;
+    while(true){
+        getline(cin,line);
+        cout << ">>>" << line << endl;
+        stringstream in(line);
+        in >> cmd;
+        if(cmd == "init"){
+            contatomain = Contato(getss<string>(in));
+        }else if (cmd == "add"){
+            if(!contatomain.addNumero(new Numero(0, getss<string>(in), getss<string>(in))))
+                cout << "Número inválido" << endl;
+            else
+                cout << "Deu certo" << endl;
+            
+        }else if (cmd == "show"){
+            cout << contatomain.getNome() << " ";
+            if(contatomain.getNumeros().size()>0)
+                for (int i = 0; i < contatomain.getNumeros().size(); i++)
+                    cout << *contatomain.getNumeros()[i];
+            cout << endl;
+                
+            
+        }else if (cmd == "remove"){
+            int aux = getss<int>(in);
+            cout << aux << "teste" << endl;
+            if(!contatomain.rmNumero(aux))
+                cout << "Índice do número inválido" << endl;
+            else
+                cout << "Deu certo"<< endl;
+        }else if(cmd == "help"){
+            cout << "add <string> <string>" << endl;
+            cout << "remove <int>" << endl;
+            cout << "show" << endl;
+            cout << "init <string>" << endl;
+        }
+        
+        
+        
+    }
 }
